@@ -35,7 +35,7 @@
 
 ```html
 <div data-upchin-embed="box-breathing" data-lang="hi">
-  <p><a href="https://upchin.app/hi/tools/box-breathing">Upchin</a> का बॉक्स ब्रीदिंग</p>
+  <p><a href="https://upchin.app/hi/tools/box-breathing">Upchin</a> की बॉक्स ब्रीदिंग</p>
 </div>
 <script src="https://kevinsarrazin.github.io/free-box-breathing-online/box-breathing-embed.js" async></script>
 ```
@@ -44,7 +44,7 @@
 
 ```html
 <iframe src="https://upchin.app/embed/box-breathing?lang=hi" title="बॉक्स ब्रीदिंग" width="100%" height="1450" style="border:0;max-width:100%" loading="lazy" allow="clipboard-write"></iframe>
-<p><a href="https://upchin.app/hi/tools/box-breathing">Upchin</a> का बॉक्स ब्रीदिंग</p>
+<p><a href="https://upchin.app/hi/tools/box-breathing">Upchin</a> की बॉक्स ब्रीदिंग</p>
 ```
 
 कृपया एक्सरसाइज़ के नीचे वाली क्रेडिट लाइन रहने दें। स्क्रिप्ट फ़्रेम को उसके बगल में जोड़ती है और उसे कभी नहीं हटाती।

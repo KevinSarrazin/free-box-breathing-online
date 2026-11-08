@@ -4,7 +4,7 @@ Andere talen: [English](README.md) · [Français](README.fr.md) · [Deutsch](REA
 
 Een gratis begeleide box breathing-oefening die in je browser draait, in één HTML-bestand.
 
-Probeer hem online: https://kevinsarrazin.github.io/free-box-breathing-online/nl/
+Probeer het online: https://kevinsarrazin.github.io/free-box-breathing-online/nl/
 
 Volg het licht rond het vierkant. Elke zijde is één stap van 4 seconden:
 

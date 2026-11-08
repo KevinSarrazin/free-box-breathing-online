@@ -15,7 +15,7 @@ Følg lyset rundt om firkanten. Hver side er ét trin på 4 sekunder:
 
 Sessioner på 1, 3 eller 5 minutter slutter altid med en hel runde. Først kommer en nedtælling på 3 sekunder, en blød lyd kan markere hvert trin, sessionen sættes på pause, når du forlader fanen, og der tages hensyn til indstillingen for reduceret bevægelse.
 
-Intet bliver gemt, og intet bliver sendt videre: ingen sporing, intet eksternt script, ingen tilmelding.
+Intet bliver gemt, og intet bliver sendt videre: ingen sporing, intet eksternt script, ingen konto.
 
 ## Kør den
 
@@ -23,7 +23,7 @@ Intet bliver gemt, og intet bliver sendt videre: ingen sporing, intet eksternt s
 
 ## Sådan får du mest ud af den
 
-Træk vejret roligt uden at presse. Føles det ubehageligt at holde vejret, så gør den tid kortere: målet er en rolig, jævn rytme, ikke en præstation.
+Træk vejret roligt uden at presse. Føles det ubehageligt at holde vejret, så hold det i kortere tid: målet er en rolig, jævn rytme, ikke en præstation.
 
 Øvelsen er ikke en medicinsk behandling. Bliver du svimmel eller får det dårligt, så stop og træk vejret normalt.
 

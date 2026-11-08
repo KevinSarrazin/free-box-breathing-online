@@ -27,7 +27,7 @@ Oddychaj łagodnie, bez forsowania. Jeśli wstrzymywanie oddechu jest niewygodne
 
 To ćwiczenie nie jest formą leczenia. Jeśli kręci Ci się w głowie albo źle się czujesz, przerwij i oddychaj normalnie.
 
-## Osadź ćwiczenie na swojej stronie
+## Umieść ćwiczenie na swojej stronie
 
 Pełne ćwiczenie oddychania pudełkowego z upchin.app możesz bezpłatnie pokazać na własnej stronie. Jest dostępne w 17 językach: ustaw `data-lang` (lub `lang=` w adresie ramki) na jeden z kodów: `en`, `fr`, `de`, `es-MX`, `pt-BR`, `it`, `nl`, `pl`, `da`, `sv`, `ru`, `id`, `hi`, `ja`, `ko`, `zh-Hans`, `zh-HK`.
 

@@ -15,7 +15,7 @@ Segui la luce intorno al quadrato. Ogni lato è una fase di 4 secondi:
 
 Le sessioni da 1, 3 o 5 minuti finiscono sempre con un ciclo completo. Prima c’è un conto alla rovescia di 3 secondi, un suono delicato facoltativo segna ogni fase, la sessione va in pausa quando lasci la scheda e viene rispettata la preferenza per il movimento ridotto.
 
-Non viene salvato né inviato nulla: niente tracciamento, nessuno script esterno, nessuna registrazione.
+Non viene salvato né inviato nulla: niente tracciamento, nessuno script esterno, nessun account.
 
 ## Come avviarlo
 

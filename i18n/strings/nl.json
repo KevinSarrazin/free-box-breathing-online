@@ -63,7 +63,7 @@
   "readme": {
     "title": "Gratis box breathing-oefening online",
     "intro": "Een gratis begeleide box breathing-oefening die in je browser draait, in één HTML-bestand.",
-    "try_online": "Probeer hem online: {url}",
+    "try_online": "Probeer het online: {url}",
     "how": "Volg het licht rond het vierkant. Elke zijde is één stap van 4 seconden:",
     "step_in": "**Adem in**: het licht loopt langs de bovenkant en de cirkel wordt groter.",
     "step_hold_in": "**Houd vast**, longen vol: de rechterkant.",

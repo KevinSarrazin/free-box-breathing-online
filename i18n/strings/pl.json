@@ -76,7 +76,7 @@
     "reading_title": "Jak dobrze z niego korzystać",
     "reading_p1": "Oddychaj łagodnie, bez forsowania. Jeśli wstrzymywanie oddechu jest niewygodne, skróć je: chodzi o spokojny, równy rytm, a nie o wyczyn.",
     "reading_p2": "To ćwiczenie nie jest formą leczenia. Jeśli kręci Ci się w głowie albo źle się czujesz, przerwij i oddychaj normalnie.",
-    "embed_title": "Osadź ćwiczenie na swojej stronie",
+    "embed_title": "Umieść ćwiczenie na swojej stronie",
     "embed_intro": "Pełne ćwiczenie oddychania pudełkowego z upchin.app możesz bezpłatnie pokazać na własnej stronie. Jest dostępne w 17 językach: ustaw `data-lang` (lub `lang=` w adresie ramki) na jeden z kodów: {codes}.",
     "embed_script": "**Ze skryptem** ({file}), który dopasowuje wysokość ramki do treści:",
     "embed_html": "**Bez skryptu**, jeśli Twoja strona przyjmuje tylko HTML:",

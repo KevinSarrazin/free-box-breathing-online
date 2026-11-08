@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boxandning online – gratis guidad andningsövning</title>
+<meta name="description" content="Gratis guidad boxandning i webbläsaren: andas in, håll, andas ut, håll, 4 sekunder per steg. 1, 3 eller 5 minuter, med mjuka ljud om du vill.">
+<link rel="alternate" hreflang="en" href="https://kevinsarrazin.github.io/free-box-breathing-online/">
+<link rel="alternate" hreflang="fr" href="https://kevinsarrazin.github.io/free-box-breathing-online/fr/">
+<link rel="alternate" hreflang="de" href="https://kevinsarrazin.github.io/free-box-breathing-online/de/">
+<link rel="alternate" hreflang="es-MX" href="https://kevinsarrazin.github.io/free-box-breathing-online/es-MX/">
+<link rel="alternate" hreflang="pt-BR" href="https://kevinsarrazin.github.io/free-box-breathing-online/pt-BR/">
+<link rel="alternate" hreflang="it" href="https://kevinsarrazin.github.io/free-box-breathing-online/it/">
+<link rel="alternate" hreflang="nl" href="https://kevinsarrazin.github.io/free-box-breathing-online/nl/">
+<link rel="alternate" hreflang="pl" href="https://kevinsarrazin.github.io/free-box-breathing-online/pl/">
+<link rel="alternate" hreflang="da" href="https://kevinsarrazin.github.io/free-box-breathing-online/da/">
+<link rel="alternate" hreflang="sv" href="https://kevinsarrazin.github.io/free-box-breathing-online/sv/">
+<link rel="alternate" hreflang="ru" href="https://kevinsarrazin.github.io/free-box-breathing-online/ru/">
+<link rel="alternate" hreflang="id" href="https://kevinsarrazin.github.io/free-box-breathing-online/id/">
+<link rel="alternate" hreflang="hi" href="https://kevinsarrazin.github.io/free-box-breathing-online/hi/">
+<link rel="alternate" hreflang="ja" href="https://kevinsarrazin.github.io/free-box-breathing-online/ja/">
+<link rel="alternate" hreflang="ko" href="https://kevinsarrazin.github.io/free-box-breathing-online/ko/">
+<link rel="alternate" hreflang="zh-Hans" href="https://kevinsarrazin.github.io/free-box-breathing-online/zh-Hans/">
+<link rel="alternate" hreflang="zh-HK" href="https://kevinsarrazin.github.io/free-box-breathing-online/zh-HK/">
+<link rel="alternate" hreflang="x-default" href="https://kevinsarrazin.github.io/free-box-breathing-online/">
+<style>
+  :root {
+    --bg: #E9EFF9;
+    --surface: #FFFFFF;
+    --ink: #0E1B3F;
+    --ink-2: #4A5677;
+    --accent: #1E43B8;
+    --line: #D3DCEC;
+    --track: #C9D3E6;
+    --glow: rgba(39, 198, 230, .55);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #070B18;
+      --surface: #161C2C;
+      --ink: #EEF3FC;
+      --ink-2: #A9B6D3;
+      --accent: #66B5FF;
+      --line: #2A3349;
+      --track: #2E3852;
+      --glow: rgba(39, 198, 230, .45);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 1.25rem; margin: 32px 0 8px; }
+  p { margin: 0 0 12px; }
+  .lead { color: var(--ink-2); }
+  a { color: var(--accent); }
+
+  .card { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px 16px; }
+  .status { margin: 0 0 10px; font-weight: 600; text-align: center; }
+  .meta { display: flex; justify-content: space-between; gap: 12px; font-size: .9rem; color: var(--ink-2); }
+  .meta strong { display: block; color: var(--ink); font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+  .meta .right { text-align: right; }
+  .bar { height: 4px; margin: 10px 0 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+  .bar span { display: block; height: 100%; width: 0; background: var(--accent); }
+
+  .stage { position: relative; width: min(100%, 440px); margin: 0 auto; aspect-ratio: 1; }
+  .stage svg { display: block; width: 100%; height: 100%; }
+  .ring { fill: none; stroke: var(--track); stroke-width: 1; }
+  .halo { fill: rgba(30, 67, 184, .09); stroke: rgba(30, 67, 184, .28); stroke-width: 1; }
+  .track, .glow, .progress { fill: none; stroke-linecap: round; }
+  .track { stroke: var(--track); stroke-width: 2.2px; }
+  .glow { stroke: var(--glow); stroke-width: 8px; opacity: 0; transition: opacity .3s; }
+  .progress { stroke: var(--accent); stroke-width: 3.5px; }
+  .point-glow { fill: var(--glow); opacity: .35; }
+  .point { fill: var(--surface); stroke: var(--accent); stroke-width: 4; }
+  .point-core { fill: var(--accent); }
+  .label { position: absolute; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; transition: color .3s; }
+  .label.is-active { color: var(--accent); }
+  .label.top { top: 11.1%; left: 50%; transform: translate(-50%, -50%); }
+  .label.right { top: 50%; right: 10.1%; transform: translate(50%, -50%) rotate(90deg); }
+  .label.bottom { bottom: 11.1%; left: 50%; transform: translate(-50%, 50%); }
+  .label.left { top: 50%; left: 10.1%; transform: translate(-50%, -50%) rotate(-90deg); }
+  :is(:lang(zh), :lang(ja), :lang(ko)) .label.right,
+  :is(:lang(zh), :lang(ja), :lang(ko)) .label.left { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0; }
+  :is(:lang(zh), :lang(ja), :lang(ko)) .label.right { transform: translate(50%, -50%); }
+  :is(:lang(zh), :lang(ja), :lang(ko)) .label.left { transform: translate(-50%, -50%); }
+  .readout { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; text-align: center; }
+  .phase { font-weight: 700; font-size: 1.15rem; }
+  .seconds { font-size: 2.6rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+
+  .actions { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 8px; }
+  .main { font: inherit; font-weight: 700; color: #FFFFFF; background: var(--accent); border: 0; border-radius: 999px; padding: 12px 28px; cursor: pointer; }
+  .reset { font: inherit; color: var(--ink-2); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; cursor: pointer; }
+  .reset:disabled { opacity: .45; cursor: default; }
+  .hint { margin: 10px 0 0; text-align: center; font-size: .9rem; color: var(--ink-2); }
+
+  .controls { display: grid; gap: 14px; margin-top: 16px; }
+  .heading { margin: 0 0 6px; font-weight: 600; font-size: .9rem; color: var(--ink-2); }
+  .lengths { display: flex; gap: 8px; flex-wrap: wrap; }
+  .length { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  .length[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+  .length:disabled { opacity: .5; cursor: default; }
+  .switch-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .switch-row small { display: block; color: var(--ink-2); }
+  .switch { position: relative; flex: none; width: 46px; height: 28px; border-radius: 14px; border: 0; background: var(--line); cursor: pointer; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; transition: left .15s; }
+  .switch[aria-checked="true"] { background: var(--accent); }
+  .switch[aria-checked="true"]::after { left: 21px; }
+
+  .cta { margin-top: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+  footer { margin-top: 32px; color: var(--ink-2); font-size: .9rem; }
+  .langs { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none; padding: 0; margin: 12px 0 0; }
+  .langs a[aria-current] { color: var(--ink); font-weight: 700; text-decoration: none; }
+  .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    .label { font-size: .65rem; letter-spacing: .05em; }
+    .seconds { font-size: 2.1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glow, .label, .switch::after { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Gratis övning i boxandning</h1>
+  <p class="lead">Följ ljuset runt fyrkanten: andas in i 4 sekunder, håll i 4, andas ut i 4, håll i 4. Välj 1, 3 eller 5 minuter. Inget att installera, inget skickas någonstans.</p>
+
+  <div class="card" role="group" aria-label="Gratis övning i boxandning">
+    <p class="status" id="status">När du är redo</p>
+    <div class="meta">
+      <div><span id="time-label">Planerad tid</span><strong id="time">01:04</strong></div>
+      <div class="right"><span>Avklarade varv</span><strong id="cycles">0</strong></div>
+    </div>
+    <div class="bar" aria-hidden="true"><span id="bar"></span></div>
+    <div class="stage">
+      <svg viewBox="0 0 520 520" aria-hidden="true" focusable="false">
+        <circle class="ring" cx="260" cy="260" r="165"/>
+        <circle class="halo" id="halo" cx="260" cy="260" r="78"/>
+        <g><path class="track" d="M 122 90 H 398 Q 430 90 430 122"/><path class="track" d="M 430 122 V 398 Q 430 430 398 430"/><path class="track" d="M 398 430 H 122 Q 90 430 90 398"/><path class="track" d="M 90 398 V 122 Q 90 90 122 90"/></g>
+        <g><path class="glow" d="M 122 90 H 398 Q 430 90 430 122"/><path class="glow" d="M 430 122 V 398 Q 430 430 398 430"/><path class="glow" d="M 398 430 H 122 Q 90 430 90 398"/><path class="glow" d="M 90 398 V 122 Q 90 90 122 90"/></g>
+        <g><path class="progress" d="M 122 90 H 398 Q 430 90 430 122"/><path class="progress" d="M 430 122 V 398 Q 430 430 398 430"/><path class="progress" d="M 398 430 H 122 Q 90 430 90 398"/><path class="progress" d="M 90 398 V 122 Q 90 90 122 90"/></g>
+        <g id="point" transform="translate(122 90)">
+          <circle class="point-glow" r="21"/>
+          <circle class="point" r="8"/>
+          <circle class="point-core" r="3.1"/>
+        </g>
+      </svg>
+      <span class="label top" aria-hidden="true">Andas in</span>
+      <span class="label right" aria-hidden="true">Håll</span>
+      <span class="label bottom" aria-hidden="true">Andas ut</span>
+      <span class="label left" aria-hidden="true">Håll</span>
+      <div class="readout" aria-hidden="true">
+        <span class="phase" id="phase">Andas</span>
+        <span class="seconds" id="seconds">4</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="main" id="main">Starta</button>
+      <button type="button" class="reset" id="reset" disabled>Återställ</button>
+    </div>
+    <p class="hint" id="hint">Hitta en bekväm ställning. Du behöver inte tvinga fram andningen.</p>
+    <p class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" id="announce"></p>
+  </div>
+
+  <div class="controls">
+    <div>
+      <p class="heading" id="length-heading">Passets längd</p>
+      <div class="lengths" role="group" aria-labelledby="length-heading">
+        <button type="button" class="length" data-length="60" aria-pressed="true">1 min</button>
+        <button type="button" class="length" data-length="180" aria-pressed="false">3 min</button>
+        <button type="button" class="length" data-length="300" aria-pressed="false">5 min</button>
+      </div>
+    </div>
+    <p class="heading" style="margin:0">Tempo: 4 sekunder per steg.</p>
+    <div class="switch-row">
+      <span>Mjuka ljud<small>En mjuk signal vid varje nytt steg</small></span>
+      <button type="button" class="switch" id="sound" role="switch" aria-checked="false" aria-label="Mjuka ljud"></button>
+    </div>
+  </div>
+
+  <h2>Så fungerar boxandning</h2>
+  <p>Boxandning ger andningen en lugn, jämn takt: fyra lika långa steg, som fyrkantens fyra sidor. Många använder den för att landa före en uppgift, efter en stressig stund eller i stället för att sträcka sig efter mobilen.</p>
+  <p>Andas mjukt, utan att forcera. Känns det obekvämt att hålla andan, kan du korta den tiden: målet är en lugn och jämn rytm, inte en prestation.</p>
+  <p>Övningen är ingen medicinsk behandling. Om du blir yr eller mår dåligt, avbryt och andas som vanligt.</p>
+
+  <div class="cta">
+    <p><strong>Vill du andas i ditt eget tempo, på 17 språk?</strong> Med <a href="https://upchin.app/sv/verktyg/boxandning">boxandningsövningen på upchin.app</a> ställer du in varje steg på 1 till 20 sekunder, får vibration på mobilen och kan göra pass utan tidsgräns.</p>
+    <p style="margin:0">Den är gjord av teamet bakom <a href="https://upchin.app/sv">Upchin</a>, en iPhone-app som hjälper dig att ta pauser från mobilen med hjälp av Apples Skärmtid.</p>
+  </div>
+
+  <footer>
+    <p>Öppen källkod, en enda HTML-fil, ingen spårning, inget sparas.</p>
+    <nav aria-label="Språk">
+      <ul class="langs"><li><a href=".././" hreflang="en" lang="en">English</a></li><li><a href="../fr/" hreflang="fr" lang="fr">Français</a></li><li><a href="../de/" hreflang="de" lang="de">Deutsch</a></li><li><a href="../es-MX/" hreflang="es-MX" lang="es-MX">Español (México)</a></li><li><a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a></li><li><a href="../it/" hreflang="it" lang="it">Italiano</a></li><li><a href="../nl/" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="../pl/" hreflang="pl" lang="pl">Polski</a></li><li><a href="../da/" hreflang="da" lang="da">Dansk</a></li><li><a href="../sv/" hreflang="sv" lang="sv" aria-current="page">Svenska</a></li><li><a href="../ru/" hreflang="ru" lang="ru">Русский</a></li><li><a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a></li><li><a href="../hi/" hreflang="hi" lang="hi">हिन्दी</a></li><li><a href="../ja/" hreflang="ja" lang="ja">日本語</a></li><li><a href="../ko/" hreflang="ko" lang="ko">한국어</a></li><li><a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li><li><a href="../zh-HK/" hreflang="zh-HK" lang="zh-HK">繁體中文（香港）</a></li></ul>
+    </nav>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var T = {"phase_inhale": "Andas in", "phase_hold_in": "Håll", "phase_exhale": "Andas ut", "phase_hold_out": "Håll", "idle": "Andas", "count": "Startar strax", "complete": "Klart", "status_idle": "När du är redo", "status_countdown": "Gör dig redo", "status_running": "Följ din rytm", "status_paused": "Pausat", "status_complete": "Passet är klart", "hint_idle": "Hitta en bekväm ställning. Du behöver inte tvinga fram andningen.", "hint_countdown": "Hitta en bekväm ställning. Första inandningen kommer snart.", "hint_running": "Följ ljuset. Andas mjukt, utan att forcera.", "hint_paused": "Pausat. Fortsätt när du vill.", "hint_background": "Pausades automatiskt när du lämnade fliken.", "hint_complete": "Passet är klart. Kom tillbaka när du vill.", "planned": "Planerad tid", "remaining": "Tid kvar", "start": "Starta", "pause": "Pausa", "resume": "Fortsätt", "restart": "Börja om", "aria_phase": "{phase}. {n} sekunder.", "aria_starting": "Tre sekunder kvar till start.", "aria_paused": "Passet pausat.", "aria_background": "Passet pausat: sidan doldes.", "aria_resumed": "Passet fortsätter.", "aria_complete": "Passet är klart. {n} varv.", "aria_reset": "Passet återställt."};
+  // Everything follows ONE monotonic clock (performance.now): no timers, the point is
+  // recomputed on every frame; a pause stores the elapsed time and resumes from it.
+  var COUNTDOWN_MS = 3000;
+  var STEPS = [4, 4, 4, 4];
+  var NOTES = [392, 349.23, 329.63, 349.23];
+  var NAMES = [T.phase_inhale, T.phase_hold_in, T.phase_exhale, T.phase_hold_out];
+
+  function t(key, values) {
+    var s = T[key] || "";
+    if (values) {
+      Object.keys(values).forEach(function (k) { s = s.split("{" + k + "}").join(String(values[k])); });
+    }
+    return s;
+  }
+  function $(id) { return document.getElementById(id); }
+  var ui = {
+    status: $("status"), timeLabel: $("time-label"), time: $("time"), cycles: $("cycles"), bar: $("bar"),
+    halo: $("halo"), point: $("point"), phase: $("phase"), seconds: $("seconds"), main: $("main"),
+    reset: $("reset"), hint: $("hint"), announce: $("announce"), sound: $("sound")
+  };
+  var sides = Array.prototype.slice.call(document.querySelectorAll(".progress"));
+  var glows = Array.prototype.slice.call(document.querySelectorAll(".glow"));
+  var labels = Array.prototype.slice.call(document.querySelectorAll(".label"));
+  var lengthButtons = Array.prototype.slice.call(document.querySelectorAll(".length"));
+  var lengths = sides.map(function (p) { return p.getTotalLength(); });
+  sides.forEach(function (p, i) { p.style.strokeDasharray = String(lengths[i]); p.style.strokeDashoffset = String(lengths[i]); });
+  var reduced = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+
+  var s = {
+    phase: "idle", lengthS: 60, cumulMs: 0, startAt: 0, frame: null,
+    cycleMs: 16000, plannedCycles: 4, plannedMs: 64000,
+    sound: false, audio: null, lastSignal: -1, lastAnnounce: -1
+  };
+
+  function sum(a) { return a.reduce(function (x, y) { return x + y; }, 0); }
+  function two(n) { return (n < 10 ? "0" : "") + n; }
+  function clock(ms) { var total = Math.max(0, Math.ceil(ms / 1000)); return two(Math.floor(total / 60)) + ":" + two(total % 60); }
+  // A timed session always finishes its last cycle: 1 min at 4·4·4·4 is 4 cycles, 1:04.
+  function plan() {
+    var cycle = sum(STEPS);
+    var cycles = Math.ceil(s.lengthS / cycle);
+    return { cycleMs: cycle * 1000, plannedCycles: cycles, plannedMs: cycles * cycle * 1000 };
+  }
+  function elapsed() {
+    var running = s.phase === "countdown" || s.phase === "running";
+    return s.cumulMs + (running ? Math.max(0, performance.now() - s.startAt) : 0);
+  }
+  function position(ms) {
+    var cycleMs = sum(STEPS) * 1000;
+    var cycle = Math.floor(ms / cycleMs);
+    var inCycle = ms - cycle * cycleMs;
+    var cursor = 0;
+    for (var i = 0; i < 4; i++) {
+      var d = STEPS[i] * 1000;
+      if (inCycle < cursor + d || i === 3) {
+        var e = Math.min(d, Math.max(0, inCycle - cursor));
+        return { cycle: cycle, step: i, progress: e / d, leftMs: d - e };
+      }
+      cursor += d;
+    }
+    return { cycle: cycle, step: 0, progress: 0, leftMs: STEPS[0] * 1000 };
+  }
+  function draw(pos, active) {
+    var i = pos.step, p = pos.progress, r = reduced.matches;
+    for (var k = 0; k < 4; k++) {
+      var filled = active ? (k < i ? 1 : k === i ? (r ? 1 : p) : 0) : 0;
+      sides[k].style.strokeDashoffset = String(lengths[k] * (1 - filled));
+      labels[k].classList.toggle("is-active", active && k === i);
+      glows[k].style.opacity = active && k === i ? "1" : "0";
+    }
+    var pt = sides[i].getPointAtLength(r ? lengths[i] * 0.5 : lengths[i] * p);
+    ui.point.setAttribute("transform", "translate(" + pt.x.toFixed(3) + " " + pt.y.toFixed(3) + ")");
+    // The circle fills on the in-breath, holds, empties on the out-breath, holds.
+    var radius = i === 0 ? 78 + 48 * p : i === 1 ? 126 : i === 2 ? 126 - 48 * p : 78;
+    if (r) { radius = i === 0 || i === 3 ? 78 : 126; }
+    ui.halo.setAttribute("r", radius.toFixed(3));
+  }
+  function drawIdle() {
+    draw({ step: 0, progress: 0 }, false);
+    ui.phase.textContent = t("idle");
+    ui.seconds.textContent = String(STEPS[0]);
+  }
+
+  function enableSound() {
+    if (!s.sound) { return; }
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) { return; }
+      if (!s.audio) { s.audio = new Ctx(); }
+      if (s.audio.state === "suspended") { s.audio.resume().catch(function () {}); }
+    } catch (e) {}
+  }
+  function signal(step) {
+    if (!s.sound || !s.audio || s.audio.state !== "running") { return; }
+    try {
+      var ctx = s.audio, t0 = ctx.currentTime, gain = ctx.createGain(), osc = ctx.createOscillator();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(NOTES[step], t0);
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(0.022, t0 + 0.07);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.47);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(t0); osc.stop(t0 + 0.49);
+      osc.onended = function () { osc.disconnect(); gain.disconnect(); };
+    } catch (e) {}
+  }
+  function announce(pos) {
+    var key = pos.cycle * 4 + pos.step;
+    if (key !== s.lastSignal) { s.lastSignal = key; signal(pos.step); }
+    if (pos.step !== s.lastAnnounce) {
+      s.lastAnnounce = pos.step;
+      ui.announce.textContent = t("aria_phase", { phase: NAMES[pos.step], n: STEPS[pos.step] });
+    }
+  }
+
+  function setPhase(p) { s.phase = p; document.documentElement.setAttribute("data-phase", p); }
+  function lock(on) { lengthButtons.forEach(function (b) { b.disabled = on; }); }
+
+  function drawSession(ms) {
+    var activeMs = Math.max(0, ms - COUNTDOWN_MS);
+    if (activeMs >= s.plannedMs) { finish(); return; }
+    var pos = position(activeMs);
+    draw(pos, true);
+    ui.phase.textContent = NAMES[pos.step];
+    ui.seconds.textContent = String(Math.max(1, Math.ceil(pos.leftMs / 1000)));
+    ui.cycles.textContent = String(pos.cycle);
+    ui.timeLabel.textContent = t("remaining");
+    ui.time.textContent = clock(s.plannedMs - activeMs);
+    ui.bar.style.width = (100 * activeMs / s.plannedMs).toFixed(3) + "%";
+    if (s.phase === "running") { announce(pos); }
+  }
+  function tick() {
+    s.frame = null;
+    if (s.phase !== "countdown" && s.phase !== "running") { return; }
+    var ms = elapsed();
+    if (ms < COUNTDOWN_MS) {
+      ui.phase.textContent = t("count");
+      ui.seconds.textContent = String(Math.ceil((COUNTDOWN_MS - ms) / 1000));
+      ui.timeLabel.textContent = t("remaining");
+      ui.time.textContent = clock(s.plannedMs);
+      draw({ step: 0, progress: 0 }, false);
+    } else {
+      if (s.phase === "countdown") {
+        setPhase("running");
+        ui.status.textContent = t("status_running");
+        ui.hint.textContent = t("hint_running");
+      }
+      drawSession(ms);
+    }
+    if (s.phase === "countdown" || s.phase === "running") { s.frame = requestAnimationFrame(tick); }
+  }
+  function stopFrame() { if (s.frame !== null) { cancelAnimationFrame(s.frame); s.frame = null; } }
+
+  function start() {
+    var p = plan();
+    s.cycleMs = p.cycleMs; s.plannedCycles = p.plannedCycles; s.plannedMs = p.plannedMs;
+    s.cumulMs = 0; s.startAt = performance.now(); s.lastSignal = -1; s.lastAnnounce = -1;
+    enableSound();
+    setPhase("countdown");
+    lock(true);
+    ui.status.textContent = t("status_countdown");
+    ui.hint.textContent = t("hint_countdown");
+    ui.main.textContent = t("pause");
+    ui.reset.disabled = false;
+    ui.cycles.textContent = "0";
+    ui.announce.textContent = t("aria_starting");
+    stopFrame();
+    s.frame = requestAnimationFrame(tick);
+  }
+  function pause(reason) {
+    if (s.phase !== "countdown" && s.phase !== "running") { return; }
+    s.cumulMs = elapsed();
+    stopFrame();
+    setPhase("paused");
+    ui.status.textContent = t("status_paused");
+    ui.hint.textContent = t(reason === "background" ? "hint_background" : "hint_paused");
+    ui.main.textContent = t("resume");
+    ui.announce.textContent = t(reason === "background" ? "aria_background" : "aria_paused");
+  }
+  function resume() {
+    s.startAt = performance.now();
+    enableSound();
+    setPhase(s.cumulMs < COUNTDOWN_MS ? "countdown" : "running");
+    ui.status.textContent = t(s.phase === "countdown" ? "status_countdown" : "status_running");
+    ui.hint.textContent = t(s.phase === "countdown" ? "hint_countdown" : "hint_running");
+    ui.main.textContent = t("pause");
+    ui.announce.textContent = t("aria_resumed");
+    s.frame = requestAnimationFrame(tick);
+  }
+  function finish() {
+    stopFrame();
+    setPhase("complete");
+    lock(false);
+    draw({ step: 3, progress: 1 }, false);
+    ui.phase.textContent = t("complete");
+    ui.seconds.textContent = "";
+    ui.cycles.textContent = String(s.plannedCycles);
+    ui.time.textContent = "00:00";
+    ui.bar.style.width = "100%";
+    ui.status.textContent = t("status_complete");
+    ui.hint.textContent = t("hint_complete");
+    ui.main.textContent = t("restart");
+    ui.announce.textContent = t("aria_complete", { n: s.plannedCycles });
+  }
+  function reset(quiet) {
+    stopFrame();
+    setPhase("idle");
+    lock(false);
+    s.cumulMs = 0;
+    var p = plan();
+    s.plannedMs = p.plannedMs;
+    drawIdle();
+    ui.cycles.textContent = "0";
+    ui.timeLabel.textContent = t("planned");
+    ui.time.textContent = clock(s.plannedMs);
+    ui.bar.style.width = "0";
+    ui.status.textContent = t("status_idle");
+    ui.hint.textContent = t("hint_idle");
+    ui.main.textContent = t("start");
+    ui.reset.disabled = true;
+    if (!quiet) { ui.announce.textContent = t("aria_reset"); }
+  }
+
+  lengthButtons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (s.phase !== "idle" && s.phase !== "complete") { return; }
+      s.lengthS = parseInt(b.getAttribute("data-length"), 10);
+      lengthButtons.forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+      reset(true);
+    });
+  });
+  ui.main.addEventListener("click", function () {
+    if (s.phase === "idle" || s.phase === "complete") { start(); }
+    else if (s.phase === "paused") { resume(); }
+    else { pause("manual"); }
+  });
+  ui.reset.addEventListener("click", function () { reset(false); });
+  ui.sound.addEventListener("click", function () {
+    s.sound = !s.sound;
+    ui.sound.setAttribute("aria-checked", String(s.sound));
+    if (s.sound) { enableSound(); }
+    else if (s.audio && s.audio.state === "running") { s.audio.suspend().catch(function () {}); }
+  });
+  // Leaving the tab pauses the session, and the hint says why.
+  document.addEventListener("visibilitychange", function () { if (document.hidden) { pause("background"); } });
+
+  reset(true);
+})();
+</script>
+</body>
+</html>

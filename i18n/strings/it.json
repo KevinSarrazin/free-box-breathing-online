@@ -70,7 +70,7 @@
     "step_out": "**Espira**: il lato inferiore, e il cerchio si restringe.",
     "step_hold_out": "**Trattieni**, a polmoni vuoti: il lato sinistro.",
     "features": "Le sessioni da 1, 3 o 5 minuti finiscono sempre con un ciclo completo. Prima c’è un conto alla rovescia di 3 secondi, un suono delicato facoltativo segna ogni fase, la sessione va in pausa quando lasci la scheda e viene rispettata la preferenza per il movimento ridotto.",
-    "storage": "Non viene salvato né inviato nulla: niente tracciamento, nessuno script esterno, nessuna registrazione.",
+    "storage": "Non viene salvato né inviato nulla: niente tracciamento, nessuno script esterno, nessun account.",
     "run_title": "Come avviarlo",
     "run": "Apri `index.html` in qualsiasi browser. Nessuna compilazione, nessuna dipendenza.",
     "reading_title": "Come usarlo al meglio",
